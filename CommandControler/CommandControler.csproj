@@ -46,6 +46,7 @@
     <Compile Include="Commands\BaseCommands.cs" />
     <Compile Include="Commands\ComandControler.cs" />
     <Compile Include="Commands\CommandsCreator.cs" />
+    <Compile Include="Commands\CustomTestCommands.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

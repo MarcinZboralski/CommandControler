@@ -1,21 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using CommandControler.Commands;
 
 namespace CommandControler.Commands
 {
-    public class CommandControler
+    public sealed class CommandControler
     {
         public static CommandControler istance;
         public static int testValue =22;
 
-        private CommandsCreator cC;
+        public List<CommandsCreator> commandsCreators = new List<CommandsCreator>();
 
-        public CommandControler(CommandsCreator commandsCreator)
+        public CommandControler(List<CommandsCreator> commandsCreator)
         {
+            commandsCreators = commandsCreator;
             istance = this;
-            cC = commandsCreator;
-            ReadComand(commandsCreator.SetCommandsCreatorUsage,commandsCreator);
+            ReadComand(commandsCreators);
         }
+           
 
 
 
@@ -24,34 +26,35 @@ namespace CommandControler.Commands
 
         public string readedValue;
 
-        public void ReadComand(SetCommandsCreatorUsage setCommandsCreatorUsage,CommandsCreator cCreator)
+        public void ReadComand(List<CommandsCreator> cCreatorList)
         {
-
             Console.WriteLine("Prosze podać komende");
             readedCommand = Console.ReadLine();
-            if (CommandExist(readedCommand,cCreator))
+
+            for (int i = 0; i < cCreatorList.Count; i++)
             {
-                Console.WriteLine("Komenda poprawna");
-                switch (setCommandsCreatorUsage)
+                if (CommandExist(readedCommand, cCreatorList[i]))
                 {
-                    case SetCommandsCreatorUsage.ExecuteCommand:
-                        cCreator.ExecuteCommand(readedCommand);
-                        break;
-                    case SetCommandsCreatorUsage.CustomExecuteCommandNullable:
-                        cCreator.CustomExecuteCommand();
-                        break;
-                    case SetCommandsCreatorUsage.CustomExecuteCommandWhithString:
-                        cCreator.CustomExecuteCommand(readedCommand);
-                        break;
+                    Console.WriteLine("Komenda poprawna");
+                    switch (cCreatorList[i].SetCommandsCreatorUsage)
+                    {
+                        case SetCommandsCreatorUsage.ExecuteCommand:
+                            cCreatorList[i].ExecuteCommand(readedCommand);
+                            break;
+                        case SetCommandsCreatorUsage.CustomExecuteCommandNullable:
+                            cCreatorList[i].CustomExecuteCommand();
+                            break;
+                        case SetCommandsCreatorUsage.CustomExecuteCommandWhithString:
+                            cCreatorList[i].CustomExecuteCommand(readedCommand);
+                            break;
+                    }
+                    break;
                 }
-
+                else if(i >= cCreatorList.Count-1)
+                {
+                    Console.WriteLine("Błędna komenda proszę podać ponnownie");
+                }
             }
-            else
-            {
-                Console.WriteLine("Błędna komenda proszę podać ponnownie");
-                ReadComand(setCommandsCreatorUsage, cCreator);
-            }
-
 
         }
 

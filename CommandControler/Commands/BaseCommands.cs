@@ -34,10 +34,16 @@ namespace CommandControler.Commands
             {
                 Console.WriteLine("Aktualne Komendy: ");
                 Console.WriteLine("");
-                foreach (var v in Commnads)
+
+                foreach (var cc in CommandControler.istance.commandsCreators)
                 {
-                    Console.WriteLine(v);
+                    foreach (var v in cc.Commnads)
+                    {
+                        Console.WriteLine(v);
+                    }
                 }
+
+               
                 Console.WriteLine("");
             }
 
