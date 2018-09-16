@@ -23,7 +23,7 @@ namespace CommandControler.Commands
         {
             if (command == "test-comm")
             {
-                Console.WriteLine("Working!!!");
+                Console.WriteLine("Multi Commends Working!!!");
             }
         }
 

@@ -9,6 +9,7 @@ namespace CommandControler.Commands
      public abstract class CommandsCreator
      {
          public SetCommandsCreatorUsage SetCommandsCreatorUsage;
+
          public List<string> Commnads = new List<string>();
 
          public abstract void SetCommands();

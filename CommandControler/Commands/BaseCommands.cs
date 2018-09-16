@@ -64,7 +64,6 @@ namespace CommandControler.Commands
                 catch (Exception e)
                 {
                     Console.WriteLine("To nie jest wartosc liczbowa");
-                   // throw;
                 }
                 
 
