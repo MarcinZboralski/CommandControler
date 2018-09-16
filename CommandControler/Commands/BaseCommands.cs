@@ -11,14 +11,15 @@ namespace CommandControler.Commands
         public BaseCommands(SetCommandsCreatorUsage setCommandsCreatorUsage)
         {
             SetCommandsCreatorUsage = setCommandsCreatorUsage;
-            SetBaseCommands();
+            SetCommands();
         }
 
-        private void SetBaseCommands()
+        public override void SetCommands()
         {
             Commnads.Add("set-testValue");
             Commnads.Add("read-testValue");
             Commnads.Add("clear-console");
+            Commnads.Add("readAllCommands");
         }
 
         public override void ExecuteCommand(string command)
@@ -27,6 +28,17 @@ namespace CommandControler.Commands
             if (command == "read-testValue")
             {
                 Console.WriteLine("Odtczytana wartosc to: " + CommandControler.testValue);
+            }
+
+            if (command == "readAllCommands")
+            {
+                Console.WriteLine("Aktualne Komendy: ");
+                Console.WriteLine("");
+                foreach (var v in Commnads)
+                {
+                    Console.WriteLine(v);
+                }
+                Console.WriteLine("");
             }
 
             if (command == "clear-console")

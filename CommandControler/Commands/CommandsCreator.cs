@@ -11,6 +11,8 @@ namespace CommandControler.Commands
          public SetCommandsCreatorUsage SetCommandsCreatorUsage;
          public List<string> Commnads = new List<string>();
 
+         public abstract void SetCommands();
+
          public abstract void ExecuteCommand(string command);
          public abstract void CustomExecuteCommand();
          public abstract void CustomExecuteCommand(string command);
