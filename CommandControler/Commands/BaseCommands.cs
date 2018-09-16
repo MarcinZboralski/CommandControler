@@ -19,6 +19,7 @@ namespace CommandControler.Commands
             Commnads.Add("set-testValue");
             Commnads.Add("read-testValue");
             Commnads.Add("clear-console");
+            Commnads.Add("close-console");
             Commnads.Add("readAllCommands");
         }
 
@@ -50,6 +51,11 @@ namespace CommandControler.Commands
             if (command == "clear-console")
             {
                 Console.Clear();
+            }
+
+            if (command == "close-console")
+            {
+                ConsoleControler.CloseConsole();
             }
 
             if (command == "set-testValue")
